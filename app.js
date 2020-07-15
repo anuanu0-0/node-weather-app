@@ -1,23 +1,23 @@
 const request = require("request");
 
-// const url =
-//   "http://api.weatherstack.com/current?access_key=ACCESS_KEY&query=20.593683,78.962883&units=f";
+const url =
+  "http://api.weatherstack.com/current?access_key=ACCESS_KEY&query=20.593683,78.962883&units=f";
 
-// request({ url: url, json: true }, (error, response) => {
-//   if (error) {
-//     console.log("Unable to connect to weather service");
-//   } else if (response.body.error) {
-//     console.log("Unable to find location");
-//   } else {
-//     console.log(
-//       response.body.current.weather_descriptions[0] +
-//         ". The temperature is " +
-//         response.body.current.temperature +
-//         " and it feels like " +
-//         response.body.current.feelslike
-//     );
-//   }
-// });
+request({ url: url, json: true }, (error, response) => {
+  if (error) {
+    console.log("Unable to connect to weather service");
+  } else if (response.body.error) {
+    console.log("Unable to find location");
+  } else {
+    console.log(
+      response.body.current.weather_descriptions[0] +
+        ". The temperature is " +
+        response.body.current.temperature +
+        " and it feels like " +
+        response.body.current.feelslike
+    );
+  }
+});
 
 const geocodeURL =
   "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=ACCESS_TOKEN&limit=1";
