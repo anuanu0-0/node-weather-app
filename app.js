@@ -1,13 +1,24 @@
 const request = require("request");
+
 const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 
-forecast(24.11, 82.39, (error, data) => {
-  console.log("Error:", error);
-  console.log("Data:", data);
-});
+const address = process.argv[2];
 
-geocode("Singrauli", (error, data) => {
-  console.log("Error:", error);
-  console.log("Data:", data);
-});
+if (!address) {
+  console.log("Please provide a location");
+} else {
+  geocode(address, (error, { latitude, longitude, location }) => {
+    if (error) {
+      return console.log(error);
+    }
+
+    forecast(longitude, latitude, (error, forecastData) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log(location);
+      console.log(forecastData);
+    });
+  });
+}
